@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pista 1 - Banheiro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cinzel', serif;
+      color: #f5e6c8;
+      text-align: center;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #fce4ec, #fbc2eb, #fad0c4, #fbc2eb);
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      color: gold;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(255,215,0,0.6);
+    }
+
+    .video-container {
+      margin: 20px auto;
+      max-width: 500px;
+      border: 3px solid gold;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255,215,0,0.4);
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    .text-block {
+      font-size: 20px;
+      margin: 30px 0;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #d4af37, #ffd700);
+      color: black;
+      padding: 15px 25px;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255,215,0,0.6);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Pista 1</div>
+
+    <div class="video-container">
+      <video controls>
+        <source src="video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+      </video>
+    </div>
+
+    <div class="text-block">
+      Assista ao vídeo com atenção… o próximo segredo está no lugar que você visita todos os dias!
+    </div>
+
+    <a href="pagina3.html" class="btn">Seguir para a próxima pista</a>
+  </div>
+</body>
+</html>
