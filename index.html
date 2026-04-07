@@ -14,10 +14,13 @@
       color: #fff5e1;
       background: linear-gradient(180deg, #3b0a0a, #1a0000);
       text-align: center;
+      overflow: hidden;
     }
 
     .container{
       padding: 30px;
+      position: relative;
+      z-index: 2;
     }
 
     .title{
@@ -25,7 +28,7 @@
       font-size: 42px;
       color: #ffd700;
       margin-bottom: 10px;
-      text-shadow: 0 0 15px rgba(255,215,0,0.6);
+      text-shadow: 0 0 20px rgba(255,215,0,0.8);
     }
 
     .subtitle{
@@ -38,13 +41,13 @@
       font-size: 18px;
       margin: 25px 0;
       min-height: 50px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.2);
     }
 
     .verse{
       font-style: italic;
       font-size: 16px;
       color: #e6cfa3;
-      margin-top: 20px;
     }
 
     .hint{
@@ -53,15 +56,57 @@
       color: #ffd700;
       font-weight: bold;
     }
+
+    .music-btn{
+      background: linear-gradient(45deg, #d4af37, #ffd700);
+      color: black;
+      padding: 12px 25px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(255,215,0,0.6);
+      transition: 0.3s;
+    }
+
+    .music-btn:hover{
+      transform: scale(1.05);
+    }
+
+    /* Partículas */
+    .particles{
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 60s linear infinite;
+      z-index: 1;
+      opacity: 0.3;
+    }
+
+    @keyframes moveStars {
+      from {background-position: 0 0;}
+      to {background-position: 10000px 5000px;}
+    }
   </style>
 </head>
 
 <body>
 
+<div class="particles"></div>
+
+<!-- Música -->
+<audio id="music" loop>
+  <source src="Áudio .mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
 
   <div class="title">Uma nova jornada...</div>
   <div class="subtitle">Princesa Talita 👑</div>
+
+  <button class="music-btn" onclick="playMusic()">🎵 Iniciar música</button>
 
   <div class="text-block" data-text="Parabéns, princesa... por ter coragem de descobrir como sua vida está prestes a mudar."></div>
 
@@ -109,6 +154,23 @@
   }
 
   window.addEventListener('load', startSequence);
+
+  // Música com volume suave crescente
+  function playMusic(){
+    const music = document.getElementById("music");
+    music.volume = 0.1;
+    music.play();
+
+    let volume = 0.1;
+    const interval = setInterval(() => {
+      if(volume < 1){
+        volume += 0.05;
+        music.volume = volume;
+      } else {
+        clearInterval(interval);
+      }
+    }, 500);
+  }
 </script>
 
 </body>
