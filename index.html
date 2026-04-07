@@ -2,85 +2,107 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Pista 1 - Banheiro</title>
+  <title>O Início da Jornada</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Great+Vibes&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    body{
       margin: 0;
       font-family: 'Cinzel', serif;
-      color: #f5e6c8;
+      color: #fff5e1;
+      background: linear-gradient(180deg, #3b0a0a, #1a0000);
       text-align: center;
-      overflow-x: hidden;
-      background: linear-gradient(135deg, #fce4ec, #fbc2eb, #fad0c4, #fbc2eb);
     }
 
-    .container {
+    .container{
       padding: 30px;
     }
 
-    .title {
+    .title{
       font-family: 'Great Vibes', cursive;
       font-size: 42px;
-      color: gold;
+      color: #ffd700;
       margin-bottom: 20px;
       text-shadow: 0 0 15px rgba(255,215,0,0.6);
     }
 
-    .video-container {
-      margin: 20px auto;
-      max-width: 500px;
-      border: 3px solid gold;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255,215,0,0.4);
-      overflow: hidden;
+    .text-block{
+      font-size: 18px;
+      margin: 25px 0;
+      min-height: 50px;
     }
 
-    video {
-      width: 100%;
-      display: block;
+    .verse{
+      font-style: italic;
+      font-size: 16px;
+      color: #e6cfa3;
+      margin-top: 20px;
     }
 
-    .text-block {
+    .hint{
+      margin-top: 40px;
       font-size: 20px;
-      margin: 30px 0;
-    }
-
-    .btn {
-      background: linear-gradient(45deg, #d4af37, #ffd700);
-      color: black;
-      padding: 15px 25px;
-      border-radius: 40px;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 30px;
+      color: #ffd700;
       font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(255,215,0,0.6);
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="title">Pista 1</div>
 
-    <div class="video-container">
-      <video controls>
-        <source src="Vídeo .mov" type="video/mp4">
-        
-      </video>
-    </div>
+<div class="container">
 
-    <div class="text-block">
-      Assista ao vídeo com atenção… o próximo segredo está no lugar que você visita todos os dias!
-    </div>
+  <div class="title">Uma nova jornada...</div>
 
-    <a href="pagina3.html" class="btn">Seguir para a próxima pista</a>
-  </div>
+  <div class="text-block" data-text="Parabéns, princesa... por ter coragem de descobrir como sua vida está prestes a mudar."></div>
+
+  <div class="text-block" data-text="A partir de agora, você entrou em um pequeno caça ao tesouro... feito especialmente para você."></div>
+
+  <div class="text-block" data-text="Cada pista foi pensada com carinho... e cada passo vai te levar mais perto de algo muito especial."></div>
+
+  <div class="text-block" data-text="Mas atenção... observe bem cada detalhe."></div>
+
+  <div class="text-block verse" data-text="&quot;Em paz me deito e logo adormeço, pois só tu, Senhor, me fazes viver em segurança.&quot; (Salmos 4:8)"></div>
+
+  <div class="text-block hint" data-text="Agora vá até o lugar onde seu dia começa... e também termina."></div>
+
+  <div class="text-block hint" data-text="Procure com atenção... sua próxima pista já está esperando por você."></div>
+
+</div>
+
+<script>
+  const blocks = document.querySelectorAll('.text-block');
+
+  function typeEffect(element, text, speed = 40) {
+    let i = 0;
+    function typing() {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, speed);
+      }
+    }
+    typing();
+  }
+
+  function handleScroll() {
+    const trigger = window.innerHeight * 0.85;
+
+    blocks.forEach(block => {
+      const top = block.getBoundingClientRect().top;
+
+      if (top < trigger && !block.classList.contains('typed')) {
+        block.classList.add('typed');
+        typeEffect(block, block.getAttribute('data-text'));
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', handleScroll);
+</script>
+
 </body>
 </html>
