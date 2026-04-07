@@ -14,7 +14,9 @@
       color: #fff5e1;
       background: linear-gradient(180deg, #3b0a0a, #1a0000);
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;   /* Esconde scroll horizontal */
+      overflow-y: auto;     /* Permite scroll vertical */
+      scroll-behavior: smooth; /* Rolagem suave */
     }
 
     .container{
@@ -105,7 +107,6 @@
     .final-button:hover{
       transform: scale(1.1);
     }
-
   </style>
 </head>
 
@@ -115,7 +116,7 @@
 
 <!-- Música -->
 <audio id="music" loop>
-  <source src="Musica.mp3 .mp3" type="audio/mpeg">
+  <source src="Musica.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -153,6 +154,11 @@
         if (i < text.length) {
           element.innerHTML += text.charAt(i);
           i++;
+          // Auto scroll suave enquanto digita
+          window.scrollTo({
+            top: element.offsetTop - 100,
+            behavior: 'smooth'
+          });
           setTimeout(typing, speed);
         } else {
           resolve();
@@ -170,6 +176,8 @@
     }
     // Mostrar botão final após terminar digitação
     document.getElementById('finalBtn').style.display = 'inline-block';
+    // Descer até o botão final
+    document.getElementById('finalBtn').scrollIntoView({ behavior: 'smooth' });
   }
 
   window.addEventListener('load', startSequence);
