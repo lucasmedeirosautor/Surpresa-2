@@ -24,8 +24,14 @@
       font-family: 'Great Vibes', cursive;
       font-size: 42px;
       color: #ffd700;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       text-shadow: 0 0 15px rgba(255,215,0,0.6);
+    }
+
+    .subtitle{
+      font-size: 20px;
+      margin-bottom: 25px;
+      color: #e6cfa3;
     }
 
     .text-block{
@@ -55,6 +61,7 @@
 <div class="container">
 
   <div class="title">Uma nova jornada...</div>
+  <div class="subtitle">Princesa Talita 👑</div>
 
   <div class="text-block" data-text="Parabéns, princesa... por ter coragem de descobrir como sua vida está prestes a mudar."></div>
 
@@ -76,32 +83,32 @@
   const blocks = document.querySelectorAll('.text-block');
 
   function typeEffect(element, text, speed = 40) {
-    let i = 0;
-    function typing() {
-      if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, speed);
+    return new Promise(resolve => {
+      let i = 0;
+
+      function typing() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typing, speed);
+        } else {
+          resolve();
+        }
       }
-    }
-    typing();
-  }
 
-  function handleScroll() {
-    const trigger = window.innerHeight * 0.85;
-
-    blocks.forEach(block => {
-      const top = block.getBoundingClientRect().top;
-
-      if (top < trigger && !block.classList.contains('typed')) {
-        block.classList.add('typed');
-        typeEffect(block, block.getAttribute('data-text'));
-      }
+      typing();
     });
   }
 
-  window.addEventListener('scroll', handleScroll);
-  window.addEventListener('load', handleScroll);
+  async function startSequence() {
+    for (let block of blocks) {
+      const text = block.getAttribute('data-text');
+      await typeEffect(block, text);
+      await new Promise(r => setTimeout(r, 800));
+    }
+  }
+
+  window.addEventListener('load', startSequence);
 </script>
 
 </body>
